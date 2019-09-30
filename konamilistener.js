@@ -34,7 +34,6 @@ let addKonamiListener;
   // if yes, then increase progress, if not, reset it.
   // The state denoted by progress = 2 is special
   // On successfull code input, all subscribing callbacks are notified
-  // Comment for testing
   const clickHandler = (e) => {
     if(isIMECompose(e))
       return;
