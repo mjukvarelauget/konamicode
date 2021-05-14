@@ -1,5 +1,7 @@
+'use strict';
 // Globally available functions
 let addKonamiListener;
+let removeKonamiListener;
 
 // Internal state defined in the follwing block
 {
@@ -68,4 +70,21 @@ let addKonamiListener;
     }
   };
   window.addEventListener("keydown", clickHandler);
+
+  // Remove subscribing function(s) by handle or name
+  removeKonamiListener = (handle) => {
+    let identifier;
+    if(typeof(handle) === "function"){
+      identifier = handle.name;
+    }
+    else if(typeof(handle) === "string") {
+      identifier = handle;
+    }
+    else {
+      throw("Can not unsubscibe " + handle + ": neither a function nor a function name");
+    }
+ 
+    // Filter the array, keeping only listeners that don't match the identifier
+    listeners = listeners.filter((subscriber) => (subscriber.name !== identifier));
+  }
 }
